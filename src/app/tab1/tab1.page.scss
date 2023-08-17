@@ -1,0 +1,19 @@
+.row-header {
+  border-bottom: 1px solid white;
+
+  ion-label {
+    font-weight: bold;
+  }
+}
+
+ion-label {
+  font-size: 12px;
+  white-space: break-spaces;
+}
+
+.kandang {
+  padding: 0;
+  margin: auto;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+}

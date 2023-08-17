@@ -1,0 +1,127 @@
+<ion-content *ngIf="magicword">
+  <ion-list lines="none" class="ion-margin">
+    <ion-grid fixed class="kandang">
+      <ion-row>
+        <ion-col size="6">
+          <ion-select
+            placeholder="Pilih Produk"
+            (ionChange)="selectProduk($event)"
+            [value]="selectedProduk"
+            label="Produk"
+            label-placement="stacked"
+            fill="outline"
+            mode="md"
+          >
+            <ion-select-option *ngFor="let x of jajanan" [value]="x.produk"
+              >{{ x.produk }}</ion-select-option
+            >
+          </ion-select>
+
+          <ion-select
+            *ngIf="selectedVarian !== ''"
+            label-placement="stacked"
+            fill="outline"
+            mode="md"
+            label="Ukuran"
+            placeholder="Pilih Ukuran"
+            (ionChange)="selectUkuran($event)"
+          >
+            <ion-select-option
+              *ngFor="let x of cariUkuran()"
+              [value]="x.gramasi"
+              >{{ x.gramasi }}</ion-select-option
+            >
+          </ion-select>
+        </ion-col>
+        <ion-col size="6">
+          <ion-select
+            *ngIf="selectedProduk !== ''"
+            label-placement="stacked"
+            fill="outline"
+            mode="md"
+            placeholder="Pilih Rasa"
+            (ionChange)="selectVarian($event)"
+          >
+            <ion-select-option *ngFor="let x of cariVarian()" [value]="x.rasa"
+              >{{ x.rasa }}</ion-select-option
+            >
+          </ion-select>
+
+          <ion-input
+            *ngIf="selectedUkuran !== ''"
+            fill="outline"
+            mode="md"
+            type="tel"
+            placeholder="Qty"
+            [(ngModel)]="qtyDisplay"
+            (keyup)="inputValidator($event.target)"
+          ></ion-input>
+        </ion-col>
+        <ion-col size="12">
+          <ion-button (click)="addmore()" mode="ios" expand="block">
+            Simpan
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <br />
+    <ng-container *ngIf="order.length > 0">
+      <!-- table order -->
+      <ion-grid fixed class="kandang">
+        <ion-row class="row-header">
+          <ion-col size="9">
+            <ion-item>
+              <ion-label>PRODUK</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3" class="ion-text-right">
+            <ion-item class="ion-text-right">
+              <ion-label>QTY</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let x of order; let i=index;">
+          <ion-col size="9">
+            <ion-item (click)="removeItem(x, i)">
+              <ion-label>
+                {{ i+1 }}. {{ x.produk }} {{ x.varian }} {{ x.ukuran }}
+              </ion-label>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="3" class="ion-text-right">
+            <ion-item class="ion-text-right">
+              <ion-label>{{ x.qty | number:'0.0-0'}}</ion-label>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-col size="12">
+            <ion-textarea
+              label="*Notes"
+              labelPlacement="stacked"
+              rows="3"
+              fill="outline"
+              mode="md"
+              [(ngModel)]="notes"
+            ></ion-textarea>
+          </ion-col> -->
+        </ion-row>
+      </ion-grid>
+
+      <!-- button kirim dan send -->
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button expand="block" color="success" (click)="kirimOrder()">
+              Kirim Order
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" (click)="hapusOrder()" color="danger">
+              Hapus Order
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ng-container>
+  </ion-list>
+</ion-content>
