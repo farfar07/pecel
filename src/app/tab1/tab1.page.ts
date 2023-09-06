@@ -108,4 +108,16 @@ export class Tab1Page {
     //   window.close();
     // }, 100);
   }
+
+  belanjaeunSortBy(prop: string) {
+    return this.belanjaeun.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
+
+  bungkuseunSortBy(prop: string) {
+    return this.bungkuseun.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
 }
