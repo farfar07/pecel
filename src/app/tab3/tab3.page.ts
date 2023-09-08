@@ -369,7 +369,7 @@ export class Tab3Page {
   total = 0;
   packing = 0;
   ongkir = 0;
-
+  jumlahItem = 0;
   kirimOrder() {
     let contentPrint: string = '```';
 
@@ -446,10 +446,10 @@ export class Tab3Page {
         x.split(';')[0] + ' ' + x.split(';')[1] + ' ' + x.split(';')[2];
       let qty = x.split(';')[3];
       let harga = this.jajanan
-        .find((y) => y.produk === x.split(';')[0])
+        .find((y) => y.produk === x.split(';')[0])!
         .ukuran.find(
           (z: any) => z.gramasi == parseInt(x.split(';')[2].replace('gr', ''))
-        ).harga;
+        )!.harga;
 
       pesenan.push({ nama: nama, qty: qty, harga: harga });
     });
@@ -458,8 +458,10 @@ export class Tab3Page {
     this.subtotal = 0;
     this.diskon = 0;
     this.total = 0;
+    this.jumlahItem = 0;
     this.totalan.forEach((x) => {
       this.subtotal += x.qty * x.harga;
+      this.jumlahItem += parseInt(x.qty);
     });
     this.diskon = this.subtotal * (this.diskonrate / 100);
     this.total = this.subtotal + this.packing + this.ongkir - this.diskon;
