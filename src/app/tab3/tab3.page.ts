@@ -10,7 +10,7 @@ import { StorageService } from '../services/storage.service';
 export class Tab3Page {
   pembeli = '';
   diskon = 0;
-  notes = '';
+  pesanan = '';
   charLength = 27;
   jajanan: any[] = [
     {
@@ -323,7 +323,7 @@ export class Tab3Page {
   }
 
   autoSave() {
-    this.storage.set('Notes', this.notes);
+    this.storage.set('pesanan', this.pesanan);
     this.storage.set('Pembeli', this.pembeli);
   }
 
@@ -334,8 +334,8 @@ export class Tab3Page {
       }
     });
 
-    this.storage.get('Notes')?.then((res) => {
-      this.notes = res;
+    this.storage.get('pesanan')?.then((res) => {
+      this.pesanan = res;
       this.hitungTrx();
     });
   }
@@ -352,7 +352,7 @@ export class Tab3Page {
         {
           text: 'Ya',
           handler: () => {
-            this.notes = '';
+            this.pesanan = '';
             this.pembeli = '';
             this.diskon = 0;
           },
@@ -439,7 +439,7 @@ export class Tab3Page {
   }
 
   hitungTrx() {
-    const a = this.notes.split('\n');
+    const a = this.pesanan.split('\n');
     let pesenan: any[] = [];
     a.forEach((x) => {
       let nama =
