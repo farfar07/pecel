@@ -1,0 +1,200 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Totalan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none" class="ion-margin">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">
+          <ion-input
+            type="text"
+            label="Nama yang beli (Wajib Diisi)"
+            fill="outline"
+            mode="md"
+            labelPlacement="stacked"
+            [(ngModel)]="pembeli"
+          ></ion-input>
+          <br />
+          <ion-textarea
+            label="Pesenannya (Wajib Diisi)"
+            labelPlacement="stacked"
+            rows="10"
+            fill="outline"
+            mode="md"
+            [(ngModel)]="notes"
+            (ionInput)="hitungTrx()"
+          ></ion-textarea>
+          <br />
+          <ion-row>
+            <ion-col size="4">
+              <ion-input
+                type="number"
+                label="Diskon % (Opsional)"
+                fill="outline"
+                mode="md"
+                labelPlacement="stacked"
+                [(ngModel)]="diskonrate"
+                (ionInput)="hitungTrx()"
+              ></ion-input>
+            </ion-col>
+            <ion-col size="4"
+              ><ion-input
+                type="number"
+                label="Ongkir (Opsional)"
+                fill="outline"
+                mode="md"
+                labelPlacement="stacked"
+                [(ngModel)]="ongkir"
+                (ionInput)="hitungTrx()"
+              ></ion-input
+            ></ion-col>
+            <ion-col size="4"
+              ><ion-input
+                type="number"
+                label="Packing (Opsional)"
+                fill="outline"
+                mode="md"
+                labelPlacement="stacked"
+                [(ngModel)]="packing"
+                (ionInput)="hitungTrx()"
+              ></ion-input
+            ></ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="block" color="success" (click)="kirimOrder()">
+                Kirim Totalan
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" (click)="hapusOrder()" color="danger">
+                Clear
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6">
+          <ion-row class="ion-no-padding">
+            <ion-col size="2" class="ion-no-padding"></ion-col>
+            <ion-col size="8" class="ion-no-padding">
+              <ion-card mode="ios" class="ion-no-margin preview-bill">
+                <ion-card-content>
+                  <ion-grid fixed class="ion-no-padding bill-style">
+                    <ion-row class="ion-no-padding">
+                      <ion-col size="12" class="ion-no-padding">
+                        Buat: {{ pembeli === '' ? 'faris' : pembeli }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding">
+                      <ion-col size="12" class="ion-no-padding">
+                        Dari: puxiboo
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding">
+                      <ion-col size="12" class="ion-no-padding ion-text-center">
+                        ---------------------------------------------------
+                      </ion-col>
+                    </ion-row>
+                    <ng-container *ngIf="totalan.length > 0">
+                      <ion-row class="ion-no-padding" *ngFor="let x of totalan">
+                        <ion-col size="12" class="ion-no-padding ion-text-left">
+                          {{ x.nama }}
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-left">
+                          {{ x.qty }} x {{ x.harga | number:'0.0-0' }}
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-right">
+                          {{ (x.qty * x.harga) | number:'0.0-0' }}
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="ongkir > 0">
+                        <ion-col size="6" class="ion-no-padding ion-text-left">
+                          Ongkir
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-right">
+                          {{ ongkir | number:'0.0-0' }}
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="packing > 0">
+                        <ion-col size="6" class="ion-no-padding ion-text-left">
+                          Packing
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-right">
+                          {{ packing | number:'0.0-0' }}
+                        </ion-col>
+                      </ion-row>
+                    </ng-container>
+                    <ng-container *ngIf="totalan.length === 0">
+                      <ion-row class="ion-no-padding">
+                        <ion-col size="12" class="ion-no-padding ion-text-left">
+                          Item 1
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="ion-no-padding">
+                        <ion-col size="6" class="ion-no-padding ion-text-left">
+                          1 x 20.000
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-right">
+                          20.000
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="ion-no-padding">
+                        <ion-col size="12" class="ion-no-padding ion-text-left">
+                          Item 2
+                        </ion-col>
+                      </ion-row>
+                      <ion-row class="ion-no-padding">
+                        <ion-col size="6" class="ion-no-padding ion-text-left">
+                          2 x 5.000
+                        </ion-col>
+                        <ion-col size="6" class="ion-no-padding ion-text-right">
+                          10.000
+                        </ion-col>
+                      </ion-row>
+                    </ng-container>
+
+                    <ion-row class="ion-no-padding">
+                      <ion-col size="12" class="ion-no-padding ion-text-center">
+                        ---------------------------------------------------
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding" *ngIf="subtotal !== total">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Subtotal
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ subtotal | number:'0.0-0'}}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding" *ngIf="diskon > 0">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Diskon
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ diskon | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row class="ion-no-padding" *ngIf="total> 0">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Total
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ total | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="2" class="ion-no-padding"></ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
