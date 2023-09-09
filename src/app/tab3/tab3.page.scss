@@ -19,5 +19,9 @@ ion-label {
 }
 
 .preview-bill {
-  font-family: monospace !important;
+  max-width: 339px;
+  margin: auto;
+  ion-col {
+    font-family: monospace !important;
+  }
 }

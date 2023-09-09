@@ -21,7 +21,7 @@
           <ion-textarea
             label="Pesenannya (Wajib Diisi)"
             labelPlacement="stacked"
-            rows="10"
+            rows="7"
             fill="outline"
             mode="md"
             [(ngModel)]="pesanan"
@@ -79,8 +79,8 @@
         </ion-col>
         <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
           <ion-row class="ion-no-padding">
-            <ion-col size="2" class="ion-no-padding"></ion-col>
-            <ion-col size="8" class="ion-no-padding">
+            <!-- <ion-col size="1" class="ion-no-padding"></ion-col> -->
+            <ion-col size="12" class="ion-no-padding">
               <ion-card mode="ios" class="ion-no-margin preview-bill">
                 <ion-card-content>
                   <ion-grid fixed class="ion-no-padding bill-style">
@@ -95,8 +95,12 @@
                       </ion-col>
                     </ion-row>
                     <ion-row class="ion-no-padding">
-                      <ion-col size="12" class="ion-no-padding ion-text-center">
-                        ---------------------------------------------------
+                      <ion-col
+                        size="12"
+                        class="ion-no-padding ion-text-center"
+                        style="white-space: nowrap; overflow: hidden"
+                      >
+                        -------------------------------
                       </ion-col>
                     </ion-row>
                     <ng-container *ngIf="totalan.length > 0">
@@ -109,22 +113,6 @@
                         </ion-col>
                         <ion-col size="6" class="ion-no-padding ion-text-right">
                           {{ (x.qty * x.harga) | number:'0.0-0' }}
-                        </ion-col>
-                      </ion-row>
-                      <ion-row *ngIf="ongkir > 0">
-                        <ion-col size="6" class="ion-no-padding ion-text-left">
-                          Ongkir
-                        </ion-col>
-                        <ion-col size="6" class="ion-no-padding ion-text-right">
-                          {{ ongkir | number:'0.0-0' }}
-                        </ion-col>
-                      </ion-row>
-                      <ion-row *ngIf="packing > 0">
-                        <ion-col size="6" class="ion-no-padding ion-text-left">
-                          Packing
-                        </ion-col>
-                        <ion-col size="6" class="ion-no-padding ion-text-right">
-                          {{ packing | number:'0.0-0' }}
                         </ion-col>
                       </ion-row>
                     </ng-container>
@@ -158,8 +146,12 @@
                     </ng-container>
 
                     <ion-row class="ion-no-padding">
-                      <ion-col size="12" class="ion-no-padding ion-text-center">
-                        ---------------------------------------------------
+                      <ion-col
+                        size="12"
+                        class="ion-no-padding ion-text-center"
+                        style="white-space: nowrap; overflow: hidden"
+                      >
+                        -------------------------------
                       </ion-col>
                     </ion-row>
                     <ion-row class="ion-no-padding" *ngIf="subtotal !== total">
@@ -178,8 +170,23 @@
                         {{ diskon | number:'0.0-0' }}
                       </ion-col>
                     </ion-row>
-
-                    <ion-row class="ion-no-padding" *ngIf="total> 0">
+                    <ion-row *ngIf="ongkir > 0">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Ongkir
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ ongkir | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="packing > 0">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Packing
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ packing | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding" *ngIf="total > 0">
                       <ion-col size="6" class="ion-no-padding ion-text-left">
                         Total ({{ jumlahItem }}pcs)
                       </ion-col>
@@ -187,11 +194,19 @@
                         {{ total | number:'0.0-0' }}
                       </ion-col>
                     </ion-row>
+                    <ion-row class="ion-no-padding" *ngIf="total === 0">
+                      <ion-col size="6" class="ion-no-padding ion-text-left">
+                        Total (2pcs)
+                      </ion-col>
+                      <ion-col size="6" class="ion-no-padding ion-text-right">
+                        {{ 30000 | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
                   </ion-grid>
                 </ion-card-content>
               </ion-card>
             </ion-col>
-            <ion-col size="2" class="ion-no-padding"></ion-col>
+            <!-- <ion-col size="1" class="ion-no-padding"></ion-col> -->
           </ion-row>
         </ion-col>
       </ion-row>

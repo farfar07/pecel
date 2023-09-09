@@ -375,7 +375,7 @@ export class Tab3Page {
 
     contentPrint += 'Buat : ' + this.pembeli + '%0A';
 
-    contentPrint += 'Dari : puxiboo';
+    contentPrint += 'Dari : puxiboo %0A';
 
     contentPrint += '-'.repeat(this.charLength) + '%0A';
 
@@ -417,15 +417,46 @@ export class Tab3Page {
         diskon +
         '\n%0A';
     }
+
+    if (this.packing > 0) {
+      let lblPacking: string = 'Packing';
+      let packing = this.packing.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblPacking +
+        ' '.repeat(this.charLength - (lblPacking.length + packing.length)) +
+        packing +
+        '\n%0A';
+    }
+
+    if (this.ongkir > 0) {
+      let lblOngkir: string = 'Ongkir';
+      let ongkir = this.ongkir.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblOngkir +
+        ' '.repeat(this.charLength - (lblOngkir.length + ongkir.length)) +
+        ongkir +
+        '\n%0A';
+    }
+
     if (this.total > 0) {
-      let lblTotal = 'Total';
+      let lblTotal = 'Total ';
+      let lblJmlItm = '(' + this.jumlahItem + ')pcs';
       let total = this.total.toLocaleString('id', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
       });
       contentPrint +=
         lblTotal +
-        ' '.repeat(this.charLength - (lblTotal.length + total.length)) +
+        lblJmlItm +
+        ' '.repeat(
+          this.charLength - (lblTotal.length + total.length + lblJmlItm.length)
+        ) +
         total +
         '\n%0A';
     }
@@ -453,7 +484,22 @@ export class Tab3Page {
 
       pesenan.push({ nama: nama, qty: qty, harga: harga });
     });
-    this.totalan = pesenan;
+
+    var groupByProduk: any[] = [];
+    pesenan.reduce(function (res, value) {
+      if (!res[value.nama]) {
+        res[value.nama] = {
+          nama: value.nama,
+          harga: value.harga,
+          qty: 0,
+        };
+        groupByProduk.push(res[value.nama]);
+      }
+      res[value.nama].qty += parseInt(value.qty);
+      return res;
+    }, {});
+    console.log(groupByProduk);
+    this.totalan = this.belanjaeunSortBy(groupByProduk, 'nama');
 
     this.subtotal = 0;
     this.diskon = 0;
@@ -464,11 +510,12 @@ export class Tab3Page {
       this.jumlahItem += parseInt(x.qty);
     });
     this.diskon = this.subtotal * (this.diskonrate / 100);
+    this.subtotal = this.subtotal;
     this.total = this.subtotal + this.packing + this.ongkir - this.diskon;
   }
-  // belanjaeunSortBy(prop: string) {
-  //   return this.belanjaeun.sort((a, b) =>
-  //     a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
-  //   );
-  // }
+  belanjaeunSortBy(psenan: any[], prop: string) {
+    return psenan.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
+  }
 }
