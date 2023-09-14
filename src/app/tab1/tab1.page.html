@@ -46,7 +46,7 @@
         </ion-list-header>
         <ion-list *ngIf="bungkuseun.length > 0">
           <ion-item *ngFor="let x of bungkuseunSortBy('nama')">
-            <ion-label>{{ x.nama }}</ion-label>
+            <ion-label class="ion-text-wrap">{{ x.nama }}</ion-label>
             <ion-label class="ion-text-right">{{ x.qty }}pcs</ion-label>
           </ion-item>
         </ion-list>
@@ -57,7 +57,7 @@
         </ion-list-header>
         <ion-list *ngIf="belanjaeun.length > 0">
           <ion-item *ngFor="let x of belanjaeunSortBy('nama')">
-            <ion-label>{{ x.nama }}</ion-label>
+            <ion-label class="ion-text-wrap">{{ x.nama }}</ion-label>
             <ion-label class="ion-text-right">{{ x.total }}gr</ion-label>
           </ion-item>
         </ion-list>
