@@ -270,6 +270,9 @@ export class Tab2Page {
       produk: 'Krupuk Kriwil',
       varian: [
         {
+          rasa: 'Ori DJ',
+        },
+        {
           rasa: 'Pedas DJ',
         },
         {

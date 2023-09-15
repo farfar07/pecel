@@ -49,11 +49,11 @@ export class Tab3Page {
         },
         {
           gramasi: 100,
-          harga: 7000,
+          harga: 6500,
         },
         {
           gramasi: 250,
-          harga: 15000,
+          harga: 12500,
         },
       ],
     },
