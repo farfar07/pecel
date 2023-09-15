@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
+import { Clipboard } from '@capacitor/clipboard';
 
 @Component({
   selector: 'app-tab1',
@@ -12,11 +13,11 @@ export class Tab1Page {
 
   constructor(
     private alertController: AlertController,
-    private storage: StorageService
+    private storage: StorageService,
+    private toastController: ToastController
   ) {
     setInterval(() => {
       this.autoSaveNotes();
-      console.log('kontol');
     }, 1000);
   }
 
@@ -119,5 +120,65 @@ export class Tab1Page {
     return this.bungkuseun.sort((a, b) =>
       a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
     );
+  }
+
+  charLength: number = 27;
+  async copy(tipe: string) {
+    let contentPrint = '';
+    switch (tipe) {
+      case 'bungkuseun':
+        this.bungkuseun.forEach((x) => {
+          contentPrint += x.nama + ' (' + x.qty + 'pcs)' + '\n';
+        });
+        break;
+      case 'belanjaeun':
+        this.belanjaeun.forEach((x) => {
+          contentPrint += x.nama + ' (' + x.total + 'gr)' + '\n';
+        });
+        break;
+    }
+    await Clipboard.write({
+      string: contentPrint,
+    });
+    this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Saldo copied.',
+      duration: 2000,
+      color: 'success',
+    });
+    toast.present();
+  }
+
+  kirim(tipe: string) {
+    let contentPrint = '```';
+    switch (tipe) {
+      case 'bungkuseun':
+        this.bungkuseun.forEach((x) => {
+          contentPrint +=
+            x.nama +
+            ' '.repeat(this.charLength - (x.nama.length + x.qty.length + 5)) +
+            '(' +
+            x.qty +
+            'pcs)' +
+            '%0A';
+        });
+        break;
+      case 'belanjaeun':
+        this.belanjaeun.forEach((x) => {
+          contentPrint +=
+            x.nama +
+            ' '.repeat(this.charLength - (x.nama.length + x.total.length + 4)) +
+            '(' +
+            x.total +
+            'gr)' +
+            '%0A';
+        });
+        break;
+    }
+    contentPrint += '```';
+    window.open('https://wa.me/6282217310673?text=' + contentPrint);
   }
 }

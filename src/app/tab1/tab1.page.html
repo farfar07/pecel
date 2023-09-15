@@ -41,8 +41,10 @@
   <ion-grid fixed class="ion-no-padding">
     <ion-row>
       <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
-        <ion-list-header>
+        <ion-list-header *ngIf="bungkuseun.length > 0">
           <ion-label>Bungkuseun</ion-label>
+          <ion-button (click)="copy('bungkuseun')"> &nbsp;Copy </ion-button>
+          <ion-button (click)="kirim('bungkuseun')"> &nbsp;Kirim </ion-button>
         </ion-list-header>
         <ion-list *ngIf="bungkuseun.length > 0">
           <ion-item *ngFor="let x of bungkuseunSortBy('nama')">
@@ -52,8 +54,10 @@
         </ion-list>
       </ion-col>
       <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
-        <ion-list-header>
+        <ion-list-header *ngIf="belanjaeun.length > 0">
           <ion-label>Belanjaeun</ion-label>
+          <ion-button (click)="copy('belanjaeun')"> &nbsp;Copy </ion-button>
+          <ion-button (click)="kirim('belanjaeun')"> &nbsp;Kirim </ion-button>
         </ion-list-header>
         <ion-list *ngIf="belanjaeun.length > 0">
           <ion-item *ngFor="let x of belanjaeunSortBy('nama')">

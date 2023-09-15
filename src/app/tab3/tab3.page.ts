@@ -462,7 +462,7 @@ export class Tab3Page {
     }
     contentPrint +=
       '%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```';
-
+    console.log(contentPrint);
     window.open('https://wa.me/6282217310673?text=' + contentPrint);
     setTimeout(() => {
       window.close();
