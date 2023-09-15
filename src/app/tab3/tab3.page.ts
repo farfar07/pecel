@@ -446,7 +446,7 @@ export class Tab3Page {
 
     if (this.total > 0) {
       let lblTotal = 'Total ';
-      let lblJmlItm = '(' + this.jumlahItem + ')pcs';
+      let lblJmlItm = '(' + this.jumlahItem + 'pcs)';
       let total = this.total.toLocaleString('id', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
