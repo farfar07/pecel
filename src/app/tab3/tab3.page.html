@@ -65,14 +65,22 @@
           </ion-row>
 
           <ion-row>
-            <ion-col size="6">
+            <ion-col size="5">
               <ion-button expand="block" color="success" (click)="kirimOrder()">
                 Kirim Totalan
               </ion-button>
             </ion-col>
-            <ion-col size="6">
+            <ion-col size="5">
               <ion-button expand="block" (click)="hapusOrder()" color="danger">
                 Clear
+              </ion-button>
+            </ion-col>
+            <ion-col size="2">
+              <ion-button expand="block" fill="outline" (click)="shareOrder()">
+                <ion-icon
+                  slot="icon-only"
+                  name="share-social-outline"
+                ></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>

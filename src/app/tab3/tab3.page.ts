@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-tab3',
@@ -517,5 +518,103 @@ export class Tab3Page {
     return psenan.sort((a, b) =>
       a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
     );
+  }
+
+  async shareOrder() {
+    let contentPrint: string = '```';
+
+    contentPrint += 'Buat : ' + this.pembeli + '%0A';
+
+    contentPrint += 'Dari : puxiboo %0A';
+
+    contentPrint += '-'.repeat(this.charLength) + '%0A';
+
+    this.totalan.forEach((x) => {
+      contentPrint += x.nama + '%0A';
+      let qty =
+        x.qty.toLocaleString('id') + ' x ' + x.harga.toLocaleString('id');
+      let total = (x.qty * x.harga).toLocaleString('id');
+      contentPrint +=
+        qty +
+        ' '.repeat(this.charLength - (qty.length + total.length)) +
+        total +
+        '%0A';
+    });
+
+    contentPrint += '-'.repeat(this.charLength) + '%0A';
+
+    if (this.subtotal !== this.total) {
+      let lblSubtotal = 'Subtotal';
+      let subtotal = this.subtotal.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblSubtotal +
+        ' '.repeat(this.charLength - (subtotal.length + lblSubtotal.length)) +
+        subtotal +
+        '\n%0A';
+    }
+    if (this.diskon > 0) {
+      let lblDiskon: string = 'Diskon';
+      let diskon = this.diskon.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblDiskon +
+        ' '.repeat(this.charLength - (lblDiskon.length + diskon.length)) +
+        diskon +
+        '\n%0A';
+    }
+
+    if (this.packing > 0) {
+      let lblPacking: string = 'Packing';
+      let packing = this.packing.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblPacking +
+        ' '.repeat(this.charLength - (lblPacking.length + packing.length)) +
+        packing +
+        '\n%0A';
+    }
+
+    if (this.ongkir > 0) {
+      let lblOngkir: string = 'Ongkir';
+      let ongkir = this.ongkir.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblOngkir +
+        ' '.repeat(this.charLength - (lblOngkir.length + ongkir.length)) +
+        ongkir +
+        '\n%0A';
+    }
+
+    if (this.total > 0) {
+      let lblTotal = 'Total ';
+      let lblJmlItm = '(' + this.jumlahItem + 'pcs)';
+      let total = this.total.toLocaleString('id', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      });
+      contentPrint +=
+        lblTotal +
+        lblJmlItm +
+        ' '.repeat(
+          this.charLength - (lblTotal.length + total.length + lblJmlItm.length)
+        ) +
+        total +
+        '\n%0A';
+    }
+    contentPrint +=
+      '%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```';
+    console.log(contentPrint);
+    await Share.share({
+      text: contentPrint,
+    });
   }
 }
