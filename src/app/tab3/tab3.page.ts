@@ -499,7 +499,6 @@ export class Tab3Page {
       res[value.nama].qty += parseInt(value.qty);
       return res;
     }, {});
-    console.log(groupByProduk);
     this.totalan = this.belanjaeunSortBy(groupByProduk, 'nama');
 
     this.subtotal = 0;
@@ -553,7 +552,7 @@ export class Tab3Page {
         lblSubtotal +
         ' '.repeat(this.charLength - (subtotal.length + lblSubtotal.length)) +
         subtotal +
-        '\n\n';
+        '\n';
     }
     if (this.diskon > 0) {
       let lblDiskon: string = 'Diskon';
@@ -565,7 +564,7 @@ export class Tab3Page {
         lblDiskon +
         ' '.repeat(this.charLength - (lblDiskon.length + diskon.length)) +
         diskon +
-        '\n\n';
+        '\n';
     }
 
     if (this.packing > 0) {
@@ -578,7 +577,7 @@ export class Tab3Page {
         lblPacking +
         ' '.repeat(this.charLength - (lblPacking.length + packing.length)) +
         packing +
-        '\n\n';
+        '\n';
     }
 
     if (this.ongkir > 0) {
@@ -591,10 +590,10 @@ export class Tab3Page {
         lblOngkir +
         ' '.repeat(this.charLength - (lblOngkir.length + ongkir.length)) +
         ongkir +
-        '\n\n';
+        '\n';
     }
 
-    if (this.total > 0) {
+    if (this.total > 0 || this.diskon === this.subtotal) {
       let lblTotal = 'Total ';
       let lblJmlItm = '(' + this.jumlahItem + 'pcs)';
       let total = this.total.toLocaleString('id', {
@@ -608,11 +607,11 @@ export class Tab3Page {
           this.charLength - (lblTotal.length + total.length + lblJmlItm.length)
         ) +
         total +
-        '\n\n';
+        '\n';
     }
     contentPrint +=
-      '\n\ntolong dicek lagi yaaa.\nkalau dah bener tolong ditransfer ke\nBCA 1760050306 a/n Muhammad Faris Farhan atau\n082217310673 a/n Dita Aulya Gandara (spay,dana)\n```';
-
+      '\ntolong dicek lagi yaaa.\nkalau dah bener tolong ditransfer ke\nBCA 1760050306 a/n Muhammad Faris Farhan atau\n082217310673 a/n Dita Aulya Gandara (spay,dana)\n```';
+    console.log(contentPrint);
     await Share.share({
       text: contentPrint,
     });

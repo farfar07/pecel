@@ -194,7 +194,7 @@
                         {{ packing | number:'0.0-0' }}
                       </ion-col>
                     </ion-row>
-                    <ion-row class="ion-no-padding" *ngIf="total > 0">
+                    <ion-row class="ion-no-padding" *ngIf="totalan.length > 0">
                       <ion-col size="6" class="ion-no-padding ion-text-left">
                         Total ({{ jumlahItem }}pcs)
                       </ion-col>
@@ -202,7 +202,10 @@
                         {{ total | number:'0.0-0' }}
                       </ion-col>
                     </ion-row>
-                    <ion-row class="ion-no-padding" *ngIf="total === 0">
+                    <ion-row
+                      class="ion-no-padding"
+                      *ngIf="totalan.length === 0"
+                    >
                       <ion-col size="6" class="ion-no-padding ion-text-left">
                         Total (2pcs)
                       </ion-col>
