@@ -523,14 +523,14 @@ export class Tab3Page {
   async shareOrder() {
     let contentPrint: string = '```';
 
-    contentPrint += 'Buat : ' + this.pembeli + '%0A';
+    contentPrint += 'Buat : ' + this.pembeli + '\n';
 
-    contentPrint += 'Dari : puxiboo %0A';
+    contentPrint += 'Dari : puxiboo \n';
 
-    contentPrint += '-'.repeat(this.charLength) + '%0A';
+    contentPrint += '-'.repeat(this.charLength) + '\n';
 
     this.totalan.forEach((x) => {
-      contentPrint += x.nama + '%0A';
+      contentPrint += x.nama + '\n';
       let qty =
         x.qty.toLocaleString('id') + ' x ' + x.harga.toLocaleString('id');
       let total = (x.qty * x.harga).toLocaleString('id');
@@ -538,10 +538,10 @@ export class Tab3Page {
         qty +
         ' '.repeat(this.charLength - (qty.length + total.length)) +
         total +
-        '%0A';
+        '\n';
     });
 
-    contentPrint += '-'.repeat(this.charLength) + '%0A';
+    contentPrint += '-'.repeat(this.charLength) + '\n';
 
     if (this.subtotal !== this.total) {
       let lblSubtotal = 'Subtotal';
@@ -553,7 +553,7 @@ export class Tab3Page {
         lblSubtotal +
         ' '.repeat(this.charLength - (subtotal.length + lblSubtotal.length)) +
         subtotal +
-        '\n%0A';
+        '\n\n';
     }
     if (this.diskon > 0) {
       let lblDiskon: string = 'Diskon';
@@ -565,7 +565,7 @@ export class Tab3Page {
         lblDiskon +
         ' '.repeat(this.charLength - (lblDiskon.length + diskon.length)) +
         diskon +
-        '\n%0A';
+        '\n\n';
     }
 
     if (this.packing > 0) {
@@ -578,7 +578,7 @@ export class Tab3Page {
         lblPacking +
         ' '.repeat(this.charLength - (lblPacking.length + packing.length)) +
         packing +
-        '\n%0A';
+        '\n\n';
     }
 
     if (this.ongkir > 0) {
@@ -591,7 +591,7 @@ export class Tab3Page {
         lblOngkir +
         ' '.repeat(this.charLength - (lblOngkir.length + ongkir.length)) +
         ongkir +
-        '\n%0A';
+        '\n\n';
     }
 
     if (this.total > 0) {
@@ -608,11 +608,11 @@ export class Tab3Page {
           this.charLength - (lblTotal.length + total.length + lblJmlItm.length)
         ) +
         total +
-        '\n%0A';
+        '\n\n';
     }
     contentPrint +=
-      '%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```';
-    console.log(contentPrint);
+      '\n\ntolong dicek lagi yaaa.\nkalau dah bener tolong ditransfer ke\nBCA 1760050306 a/n Muhammad Faris Farhan atau\n082217310673 a/n Dita Aulya Gandara (spay,dana)\n```';
+
     await Share.share({
       text: contentPrint,
     });
