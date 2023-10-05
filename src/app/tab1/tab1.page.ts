@@ -252,10 +252,10 @@ export class Tab1Page {
         });
         break;
     }
-    contentPrint += 'Pouch 10 : ' + this.pouch10 + '\n';
-    contentPrint += 'Pouch 12 : ' + this.pouch12 + '\n';
-    contentPrint += 'Pouch 14 : ' + this.pouch14 + '\n';
-    contentPrint += 'Pouch 16 : ' + this.pouch16 + '\n';
+    contentPrint += 'Pouch 10 : ' + this.pouch10 + '%0A';
+    contentPrint += 'Pouch 12 : ' + this.pouch12 + '%0A';
+    contentPrint += 'Pouch 14 : ' + this.pouch14 + '%0A';
+    contentPrint += 'Pouch 16 : ' + this.pouch16 + '%0A';
     contentPrint += '```';
     window.open('https://wa.me/6282217310673?text=' + contentPrint);
   }
