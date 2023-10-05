@@ -60,10 +60,19 @@ export class Tab1Page {
   notes = '';
   belanjaeun: any[] = [];
   bungkuseun: any[] = [];
+  pouch10 = 0;
+  pouch12 = 0;
+  pouch14 = 0;
+  pouch16 = 0;
   kirimOrder() {
     const a = this.notes.split('\n');
     let b: any[] = [];
     let c: any[] = [];
+    let d: any[] = [];
+    let pouch10 = 0;
+    let pouch12 = 0;
+    let pouch14 = 0;
+    let pouch16 = 0;
     a.forEach((x) => {
       let nama =
         x.split(';')[0] + ' ' + x.split(';')[1] + ' ' + x.split(';')[2];
@@ -72,7 +81,58 @@ export class Tab1Page {
       let total = x.split(';')[4];
       b.push({ nama: nama, qty: qty, total: total });
       c.push({ nama: nama2, qty: qty, total: total });
+
+      if (x.split(';')[0] !== 'Slondok' && x.split(';')[0] !== 'Mie Lidi') {
+        //kalo cimol
+        if (
+          x.split(';')[0] === 'Cimol' &&
+          x.split(';')[0] !== 'Krupuk Galing'
+        ) {
+          if (x.split(';')[2] === '50gr') {
+            pouch12 += parseInt(x.split(';')[3]);
+          } else if (x.split(';')[2] === '100gr') {
+            pouch14 += parseInt(x.split(';')[3]);
+          }
+        }
+
+        //kalo krupuk galing
+        if (
+          x.split(';')[0] !== 'Cimol' &&
+          x.split(';')[0] === 'Krupuk Galing'
+        ) {
+          if (x.split(';')[2] === '50gr') {
+            pouch12 += parseInt(x.split(';')[3]);
+          } else if (x.split(';')[2] === '100gr') {
+            pouch16 += parseInt(x.split(';')[3]);
+          }
+        }
+
+        //kalo yg lainnnya
+        if (
+          x.split(';')[0] !== 'Cimol' &&
+          x.split(';')[0] !== 'Krupuk Galing'
+        ) {
+          if (x.split(';')[2] === '50gr') {
+            pouch10 += parseInt(x.split(';')[3]);
+          } else if (x.split(';')[2] === '100gr') {
+            pouch12 += parseInt(x.split(';')[3]);
+          } else if (x.split(';')[2] === '250gr') {
+            pouch16 += parseInt(x.split(';')[3]);
+          }
+        }
+      }
     });
+    console.log(
+      'pouch 10:' + pouch10 + '\n',
+      'pouch 12:' + pouch12 + '\n',
+      'pouch 14:' + pouch14 + '\n',
+      'pouch 16:' + pouch16 + '\n'
+    );
+
+    this.pouch10 = pouch10;
+    this.pouch12 = pouch12;
+    this.pouch14 = pouch14;
+    this.pouch16 = pouch16;
 
     var bungkuseun: any[] = [];
     b.reduce(function (res, value) {
@@ -138,6 +198,10 @@ export class Tab1Page {
         });
         break;
     }
+    contentPrint += 'Pouch 10 : ' + this.pouch10 + '\n';
+    contentPrint += 'Pouch 12 : ' + this.pouch12 + '\n';
+    contentPrint += 'Pouch 14 : ' + this.pouch14 + '\n';
+    contentPrint += 'Pouch 16 : ' + this.pouch16 + '\n';
     await Clipboard.write({
       string: contentPrint,
     });
@@ -188,6 +252,10 @@ export class Tab1Page {
         });
         break;
     }
+    contentPrint += 'Pouch 10 : ' + this.pouch10 + '\n';
+    contentPrint += 'Pouch 12 : ' + this.pouch12 + '\n';
+    contentPrint += 'Pouch 14 : ' + this.pouch14 + '\n';
+    contentPrint += 'Pouch 16 : ' + this.pouch16 + '\n';
     contentPrint += '```';
     window.open('https://wa.me/6282217310673?text=' + contentPrint);
   }
