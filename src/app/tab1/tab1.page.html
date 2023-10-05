@@ -11,7 +11,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-textarea
-            label="*Notes"
+            label="Pesanan"
             labelPlacement="stacked"
             rows="15"
             fill="outline"
@@ -55,7 +55,10 @@
       </ion-col>
       <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="6">
         <ion-list-header *ngIf="belanjaeun.length > 0">
-          <ion-label>Belanjaeun</ion-label>
+          <ion-label>
+            Belanjaeun ({{ totalPesanan < 1000 ? totalPesanan :
+            totalPesanan/1000 }} {{totalPesanan < 1000 ? 'gr' : 'kg' }})
+          </ion-label>
           <ion-button (click)="copy('belanjaeun')"> &nbsp;Copy </ion-button>
           <ion-button (click)="kirim('belanjaeun')"> &nbsp;Kirim </ion-button>
         </ion-list-header>
@@ -65,6 +68,15 @@
             <ion-label class="ion-text-right">{{ x.total }}gr</ion-label>
           </ion-item>
         </ion-list>
+        <ion-item *ngIf="totalPesanan !== 0">
+          <ion-label><b>Total</b></ion-label>
+          <ion-label class="ion-text-right">
+            <b>
+              {{ totalPesanan < 1000 ? totalPesanan : totalPesanan/1000 }}
+              {{totalPesanan < 1000 ? 'gr' : 'kg' }}
+            </b>
+          </ion-label>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

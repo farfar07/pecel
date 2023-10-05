@@ -108,6 +108,7 @@ export class Tab1Page {
     // setTimeout(() => {
     //   window.close();
     // }, 100);
+    this.hitungTotal();
   }
 
   belanjaeunSortBy(prop: string) {
@@ -150,6 +151,15 @@ export class Tab1Page {
       color: 'success',
     });
     toast.present();
+  }
+
+  totalPesanan = 0;
+  hitungTotal() {
+    let x = 0;
+    this.belanjaeun?.forEach((m: any) => {
+      x += m.total;
+    });
+    this.totalPesanan = x;
   }
 
   kirim(tipe: string) {

@@ -30,6 +30,10 @@ export class Tab2Page {
           harga: 6000,
         },
         {
+          gramasi: '250gr',
+          harga: 14000,
+        },
+        {
           gramasi: '500gr',
           harga: 22500,
         },
@@ -58,6 +62,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 5500,
+        },
+        {
+          gramasi: '250gr',
+          harga: 14000,
         },
         {
           gramasi: '500gr',
@@ -90,6 +98,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 7000,
+        },
+        {
+          gramasi: '250gr',
+          harga: 14000,
         },
         {
           gramasi: '500gr',
@@ -126,6 +138,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 8500,
+        },
+        {
+          gramasi: '250gr',
+          harga: 17000,
         },
         {
           gramasi: '500gr',
@@ -194,6 +210,10 @@ export class Tab2Page {
           harga: 5500,
         },
         {
+          gramasi: '250gr',
+          harga: 14000,
+        },
+        {
           gramasi: '500gr',
           harga: 22500,
         },
@@ -227,6 +247,10 @@ export class Tab2Page {
           harga: 5500,
         },
         {
+          gramasi: '250gr',
+          harga: 14000,
+        },
+        {
           gramasi: '500gr',
           harga: 22500,
         },
@@ -251,6 +275,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 8000,
+        },
+        {
+          gramasi: '250gr',
+          harga: 20000,
         },
         {
           gramasi: '500gr',
@@ -290,6 +318,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 6000,
+        },
+        {
+          gramasi: '250gr',
+          harga: 14000,
         },
         {
           gramasi: '500gr',
@@ -332,6 +364,10 @@ export class Tab2Page {
         {
           gramasi: '100gr',
           harga: 6000,
+        },
+        {
+          gramasi: '250gr',
+          harga: 14000,
         },
         {
           gramasi: '500gr',
@@ -580,5 +616,11 @@ export class Tab2Page {
     });
 
     await alert.present();
+  }
+
+  belanjaeunSortBy(prop: string) {
+    return this.jajanan.sort((a, b) =>
+      a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1
+    );
   }
 }

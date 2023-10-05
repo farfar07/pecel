@@ -11,8 +11,11 @@
             label-placement="stacked"
             fill="outline"
             mode="md"
+            interface="action-sheet"
           >
-            <ion-select-option *ngFor="let x of jajanan" [value]="x.produk"
+            <ion-select-option
+              *ngFor="let x of belanjaeunSortBy('produk')"
+              [value]="x.produk"
               >{{ x.produk }}</ion-select-option
             >
           </ion-select>
@@ -22,6 +25,7 @@
             label-placement="stacked"
             fill="outline"
             mode="md"
+            interface="action-sheet"
             label="Ukuran"
             placeholder="Pilih Ukuran"
             (ionChange)="selectUkuran($event)"
@@ -39,6 +43,7 @@
             label-placement="stacked"
             fill="outline"
             mode="md"
+            interface="action-sheet"
             placeholder="Pilih Rasa"
             (ionChange)="selectVarian($event)"
           >
@@ -51,6 +56,7 @@
             *ngIf="selectedUkuran !== ''"
             fill="outline"
             mode="md"
+            interface="action-sheet"
             type="tel"
             placeholder="Qty"
             [(ngModel)]="qtyDisplay"
@@ -94,16 +100,6 @@
               <ion-label>{{ x.qty | number:'0.0-0'}}</ion-label>
             </ion-item>
           </ion-col>
-          <!-- <ion-col size="12">
-            <ion-textarea
-              label="*Notes"
-              labelPlacement="stacked"
-              rows="3"
-              fill="outline"
-              mode="md"
-              [(ngModel)]="notes"
-            ></ion-textarea>
-          </ion-col> -->
         </ion-row>
       </ion-grid>
 
