@@ -383,6 +383,46 @@ export class Tab2Page {
         },
       ],
     },
+    {
+      produk: 'Krupuk Seblak',
+      varian: [
+        {
+          rasa: 'Pedas Cikruh',
+        },
+        {
+          rasa: 'Pedas DJ',
+        },
+        {
+          rasa: 'Extra Pedas DJ',
+        },
+      ],
+      ukuran: [
+        {
+          gramasi: '50gr',
+          harga: 3000,
+        },
+        {
+          gramasi: '100gr',
+          harga: 6000,
+        },
+        {
+          gramasi: '250gr',
+          harga: 14000,
+        },
+        {
+          gramasi: '500gr',
+          harga: 22500,
+        },
+        {
+          gramasi: '1kg',
+          harga: 40000,
+        },
+        {
+          gramasi: '1 bal',
+          harga: 75000,
+        },
+      ],
+    },
   ];
 
   selectedProduk = '';
