@@ -62,6 +62,7 @@ export class Tab1Page {
   bungkuseun: any[] = [];
   pouch10 = 0;
   pouch12 = 0;
+  pouch12M = 0;
   pouch14 = 0;
   pouch16 = 0;
   kirimOrder() {
@@ -71,6 +72,7 @@ export class Tab1Page {
     let d: any[] = [];
     let pouch10 = 0;
     let pouch12 = 0;
+    let pouch12M = 0;
     let pouch14 = 0;
     let pouch16 = 0;
     a.forEach((x) => {
@@ -114,6 +116,8 @@ export class Tab1Page {
         ) {
           if (x.split(';')[2] === '50gr') {
             pouch10 += parseInt(x.split(';')[3]);
+          } else if (x.split(';')[2] === '75gr') {
+            pouch12M += parseInt(x.split(';')[3]);
           } else if (x.split(';')[2] === '100gr') {
             pouch12 += parseInt(x.split(';')[3]);
           } else if (x.split(';')[2] === '250gr') {
@@ -125,12 +129,14 @@ export class Tab1Page {
     console.log(
       'pouch 10:' + pouch10 + '\n',
       'pouch 12:' + pouch12 + '\n',
+      'pouch 12M:' + pouch12M + '\n',
       'pouch 14:' + pouch14 + '\n',
       'pouch 16:' + pouch16 + '\n'
     );
 
     this.pouch10 = pouch10;
     this.pouch12 = pouch12;
+    this.pouch12M = pouch12M;
     this.pouch14 = pouch14;
     this.pouch16 = pouch16;
 
@@ -164,10 +170,6 @@ export class Tab1Page {
     // console.log(belanjaeun);
     // console.log(bungkuseun);
 
-    // window.open('https://wa.me/6282217310673?text=' + contentPrint);
-    // setTimeout(() => {
-    //   window.close();
-    // }, 100);
     this.hitungTotal();
   }
 
@@ -200,6 +202,7 @@ export class Tab1Page {
     }
     contentPrint += 'Pouch 10 : ' + this.pouch10 + '\n';
     contentPrint += 'Pouch 12 : ' + this.pouch12 + '\n';
+    contentPrint += 'Pouch 12M : ' + this.pouch12M + '\n';
     contentPrint += 'Pouch 14 : ' + this.pouch14 + '\n';
     contentPrint += 'Pouch 16 : ' + this.pouch16 + '\n';
     await Clipboard.write({
@@ -254,6 +257,7 @@ export class Tab1Page {
     }
     contentPrint += 'Pouch 10 : ' + this.pouch10 + '%0A';
     contentPrint += 'Pouch 12 : ' + this.pouch12 + '%0A';
+    contentPrint += 'Pouch 12M : ' + this.pouch12M + '%0A';
     contentPrint += 'Pouch 14 : ' + this.pouch14 + '%0A';
     contentPrint += 'Pouch 16 : ' + this.pouch16 + '%0A';
     contentPrint += '```';
