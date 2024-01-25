@@ -222,11 +222,11 @@ export class Tab3Page {
       ukuran: [
         {
           gramasi: 100,
-          harga: 10000,
+          harga: 11000,
         },
         {
           gramasi: 250,
-          harga: 21500,
+          harga: 22000,
         },
       ],
     },
