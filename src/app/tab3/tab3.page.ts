@@ -15,6 +15,28 @@ export class Tab3Page {
   charLength = 27;
   jajanan: any[] = [
     {
+      produk: 'Kripset Cikruh',
+      varian: [
+        {
+          rasa: 'Pedas',
+        },
+      ],
+      ukuran: [
+        {
+          gramasi: 50,
+          harga: 5000,
+        },
+        {
+          gramasi: 100,
+          harga: 7000,
+        },
+        {
+          gramasi: 250,
+          harga: 15000,
+        },
+      ],
+    },
+    {
       produk: 'Basreng',
       varian: [
         {
