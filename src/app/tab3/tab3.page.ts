@@ -334,8 +334,24 @@ export class Tab3Page {
         },
       ],
     },
+    {
+      produk: 'Macaron',
+      varian: [
+        {
+          rasa: '',
+        },
+      ],
+      ukuran: [
+        {
+          gramasi: 600,
+          harga: 35000,
+        },
+      ],
+    },
   ];
 
+  notes =
+    '%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```';
   constructor(
     private alertController: AlertController,
     private storage: StorageService
@@ -483,8 +499,7 @@ export class Tab3Page {
         total +
         '\n%0A';
     }
-    contentPrint +=
-      '%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```';
+    contentPrint += this.notes;
     console.log(contentPrint);
     window.open('https://wa.me/6282217310673?text=' + contentPrint);
     setTimeout(() => {
@@ -637,5 +652,9 @@ export class Tab3Page {
     await Share.share({
       text: contentPrint,
     });
+  }
+
+  gantiNotes(text: string) {
+    this.notes = text;
   }
 }
