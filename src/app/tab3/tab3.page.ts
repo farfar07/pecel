@@ -654,7 +654,9 @@ export class Tab3Page {
     });
   }
 
-  gantiNotes(text: string) {
+  tipeNotes = 'kripca';
+  gantiNotes(text: string, tipe: string) {
     this.notes = text;
+    this.tipeNotes = tipe;
   }
 }

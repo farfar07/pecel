@@ -64,7 +64,7 @@
             ></ion-col>
             <ion-col size="6">
               <ion-button
-                (click)="gantiNotes('%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```')"
+                (click)="gantiNotes('%0A%0Atolong dicek lagi yaaa.%0Akalau dah bener tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```', 'kripca')"
                 expand="block"
                 shape="round"
               >
@@ -73,7 +73,7 @@
             </ion-col>
             <ion-col size="6">
               <ion-button
-                (click)="gantiNotes('%0A%0Awajib DP minimal 50% dari total harga barang.%0Apembayaran tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A```')"
+                (click)="gantiNotes('%0A%0Awajib DP minimal 50% dari total harga barang.%0Apembayaran tolong ditransfer ke%0ABCA 1760050306 a/n Muhammad Faris Farhan atau%0A082217310673 a/n Dita Aulya Gandara (spay,dana)%0A%0AHARGA BELUM TERMASUK ONGKIR```','macaron')"
                 expand="block"
                 shape="round"
               >
@@ -229,6 +229,21 @@
                       </ion-col>
                       <ion-col size="6" class="ion-no-padding ion-text-right">
                         {{ 30000 | number:'0.0-0' }}
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">&nbsp;</ion-col>
+                    </ion-row>
+                    <ion-row class="ion-no-padding">
+                      <ion-col size="12" class="ion-no-padding">
+                        {{ tipeNotes === 'kripca' ? '\ntolong dicek lagi
+                        yaaa.\nkalau dah bener tolong ditransfer ke\nBCA
+                        1760050306 a/n Muhammad Faris Farhan atau\n082217310673
+                        a/n Dita Aulya Gandara (spay,dana)\n' : 'wajib DP
+                        minimal 50% dari total harga barang. pembayaran tolong
+                        ditransfer ke BCA 1760050306 a/n Muhammad Faris Farhan
+                        atau 082217310673 a/n Dita Aulya Gandara
+                        (spay,dana)\nHAGRA BELUM TERMASUK ONGKIR' }}
                       </ion-col>
                     </ion-row>
                   </ion-grid>
