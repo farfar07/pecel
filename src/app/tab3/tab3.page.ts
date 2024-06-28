@@ -102,6 +102,10 @@ export class Tab3Page {
           gramasi: 100,
           harga: 7000,
         },
+        {
+          gramasi: 250,
+          harga: 16000,
+        },
       ],
     },
     {
@@ -194,6 +198,9 @@ export class Tab3Page {
       produk: 'Siomay',
       varian: [
         {
+          rasa: 'Ori',
+        },
+        {
           rasa: 'Pedas',
         },
       ],
@@ -210,11 +217,18 @@ export class Tab3Page {
           gramasi: 250,
           harga: 15000,
         },
+        {
+          gramasi: 500,
+          harga: 25000,
+        },
       ],
     },
     {
       produk: 'Usus Krispi',
       varian: [
+        {
+          rasa: 'Ori',
+        },
         {
           rasa: 'Pedas',
         },
